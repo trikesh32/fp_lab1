@@ -74,7 +74,7 @@ solutionModular =
         allPairs = [(a, b) | a <- aRange, b <- bRange]
         pairsWithLength = map (\(a, b) -> (a, b, primeSequenceLengthTailRec a b)) allPairs
         validPairs = filter (\(_, _, len) -> len > 0) pairsWithLength
-        bestPair = foldl findMax ((-1, -1, 0)) validPairs
+        bestPair = foldl findMax (-1, -1, 0) validPairs
     in case bestPair of
         (a, b, _) -> a * b
   where
