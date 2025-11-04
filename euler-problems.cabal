@@ -1,0 +1,75 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.37.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           euler-problems
+version:        1.0.0
+homepage:       https://github.com/your-username/euler-problems#readme
+bug-reports:    https://github.com/your-username/euler-problems/issues
+author:         Your Name
+maintainer:     your-email@example.com
+copyright:      2024 Your Name
+license:        MIT
+build-type:     Simple
+extra-source-files:
+    README.md
+    LICENSE
+
+source-repository head
+  type: git
+  location: https://github.com/your-username/euler-problems
+
+library
+  other-modules:
+      Paths_euler_problems
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+    , containers
+  default-language: Haskell2010
+
+executable euler27-test
+  main-is: Euler27Test.hs
+  other-modules:
+      Paths_euler_problems
+  hs-source-dirs:
+      test
+  build-depends:
+      HUnit
+    , base >=4.7 && <5
+    , euler-problems
+    , tasty
+    , tasty-hunit
+  default-language: Haskell2010
+
+executable euler4-test
+  main-is: Euler4Test.hs
+  other-modules:
+      Paths_euler_problems
+  hs-source-dirs:
+      test
+  build-depends:
+      HUnit
+    , base >=4.7 && <5
+    , euler-problems
+    , tasty
+    , tasty-hunit
+  default-language: Haskell2010
+
+test-suite euler-tests
+  type: exitcode-stdio-1.0
+  main-is: EulerTests.hs
+  other-modules:
+      Paths_euler_problems
+  hs-source-dirs:
+      test
+  build-depends:
+      HUnit
+    , base >=4.7 && <5
+    , euler-problems
+    , tasty
+    , tasty-hunit
+  default-language: Haskell2010

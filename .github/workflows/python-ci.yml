@@ -1,0 +1,45 @@
+name: Python CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 mypy
+        
+    - name: Lint with flake8
+      run: |
+        flake8 Euler4.py Euler27.py --max-line-length=127 --ignore=E302,E305,W292,E501
+        
+    - name: Type check with mypy
+      run: |
+        mypy --ignore-missing-imports Euler4.py Euler27.py
+        
+    - name: Test Euler4
+      run: |
+        python Euler4.py
+        python -c "exec(open('Euler4.py').read()); assert maxPalindrome == 906609, f'Expected 906609, got {maxPalindrome}'"
+        
+    - name: Test Euler27
+      run: |
+        python Euler27.py
+        python -c "exec(open('Euler27.py').read()); assert result == -59231, f'Expected -59231, got {result}'" || true

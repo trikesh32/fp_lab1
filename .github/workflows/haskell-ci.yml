@@ -1,0 +1,59 @@
+name: Haskell CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Haskell
+      uses: haskell/actions/setup@v2
+      with:
+        ghc-version: '9.4'
+        cabal-version: '3.8'
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgmp-dev
+        
+    - name: Run HLint
+      run: |
+        cabal update
+        cabal install hlint
+        ~/.cabal/bin/hlint Euler4.hs Euler27.hs
+        
+    - name: Compile and test Euler4
+      run: |
+        ghc -O2 Euler4.hs
+        echo "Testing Euler4 implementations..."
+        runhaskell -e "import Euler4; putStrLn \$ \"TailRec: \" ++ show largestPalindromeTailRec"
+        runhaskell -e "import Euler4; putStrLn \$ \"Rec: \" ++ show largestPalindromeRec"
+        runhaskell -e "import Euler4; putStrLn \$ \"Modular: \" ++ show largestPalindromeModular"
+        runhaskell -e "import Euler4; putStrLn \$ \"Map: \" ++ show largestPalindromeMap"
+        runhaskell -e "import Euler4; putStrLn \$ \"List: \" ++ show largestPalindromeList"
+        
+    - name: Compile and test Euler27
+      run: |
+        ghc -O2 Euler27.hs
+        echo "Testing Euler27 implementations..."
+        runhaskell -e "import Euler27; putStrLn \$ \"TailRec: \" ++ show solutionTailRec"
+        runhaskell -e "import Euler27; putStrLn \$ \"Rec: \" ++ show solutionRec"
+        runhaskell -e "import Euler27; putStrLn \$ \"Modular: \" ++ show solutionModular"
+        runhaskell -e "import Euler27; putStrLn \$ \"Map: \" ++ show solutionMap"
+        runhaskell -e "import Euler27; putStrLn \$ \"List: \" ++ show solutionList"
+        
+    - name: Run Python tests
+      run: |
+        python3 --version
+        echo "Running Euler4.py..."
+        python3 Euler4.py
+        echo "Running Euler27.py..."
+        python3 Euler27.py

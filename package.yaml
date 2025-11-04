@@ -1,0 +1,48 @@
+name: euler-problems
+version: 1.0.0
+github: "your-username/euler-problems"
+license: MIT
+author: "Your Name"
+maintainer: "your-email@example.com"
+copyright: "2024 Your Name"
+
+extra-source-files:
+- README.md
+- LICENSE
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+  dependencies:
+    - containers
+
+executables:
+  euler4-test:
+    main: Euler4Test.hs
+    source-dirs: test
+    dependencies:
+      - euler-problems
+      - HUnit
+      - tasty
+      - tasty-hunit
+
+  euler27-test:
+    main: Euler27Test.hs
+    source-dirs: test
+    dependencies:
+      - euler-problems
+      - HUnit
+      - tasty
+      - tasty-hunit
+
+tests:
+  euler-tests:
+    main: EulerTests.hs
+    source-dirs: test
+    dependencies:
+      - euler-problems
+      - HUnit
+      - tasty
+      - tasty-hunit
