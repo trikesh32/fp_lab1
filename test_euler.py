@@ -10,10 +10,10 @@ def test_euler4():
     expected = "906609"
     
     if expected in output:
-        print(f"✓ Euler4 test passed: found {expected}")
+        print(f"Euler4 test passed: found {expected}")
         return True
     else:
-        print(f"✗ Euler4 test failed: expected {expected}, got output: {output}")
+        print(f"Euler4 test failed: expected {expected}, got output: {output}")
         return False
 
 def test_euler27():
@@ -23,10 +23,10 @@ def test_euler27():
     expected = "-59231"
     
     if expected in output:
-        print(f"✓ Euler27 test passed: found {expected}")
+        print(f"Euler27 test passed: found {expected}")
         return True
     else:
-        print(f"✗ Euler27 test failed: expected {expected}, got output: {output}")
+        print(f"Euler27 test failed: expected {expected}, got output: {output}")
         return False
 
 if __name__ == "__main__":

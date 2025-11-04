@@ -86,7 +86,8 @@ solutionModular =
 solutionMap :: Int
 solutionMap = 
     let
-        mappedPairs = map processPair [(a, b) | a <- aRange, b <- bRange]
+        allPairs = [(a, b) | a <- aRange, b <- bRange]
+        mappedPairs = map processPair allPairs
         (a, b, _) = maximumBy (compare `on` (\(_, _, len) -> len)) mappedPairs
     in a * b
   where

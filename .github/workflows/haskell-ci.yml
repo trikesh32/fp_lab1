@@ -28,32 +28,14 @@ jobs:
       run: |
         cabal update
         cabal install hlint
-        ~/.cabal/bin/hlint Euler4.hs Euler27.hs
+        ~/.cabal/bin/hlint Euler4.hs Euler27.hs test_euler.hs
         
-    - name: Compile and test Euler4
+    - name: Run Haskell tests
       run: |
-        ghc -O2 Euler4.hs
-        echo "Testing Euler4 implementations..."
-        runhaskell -e "import Euler4; putStrLn \$ \"TailRec: \" ++ show largestPalindromeTailRec"
-        runhaskell -e "import Euler4; putStrLn \$ \"Rec: \" ++ show largestPalindromeRec"
-        runhaskell -e "import Euler4; putStrLn \$ \"Modular: \" ++ show largestPalindromeModular"
-        runhaskell -e "import Euler4; putStrLn \$ \"Map: \" ++ show largestPalindromeMap"
-        runhaskell -e "import Euler4; putStrLn \$ \"List: \" ++ show largestPalindromeList"
+        echo "=== Running Haskell tests ==="
+        runhaskell test_euler.hs
         
-    - name: Compile and test Euler27
+    - name: Run Python tests  
       run: |
-        ghc -O2 Euler27.hs
-        echo "Testing Euler27 implementations..."
-        runhaskell -e "import Euler27; putStrLn \$ \"TailRec: \" ++ show solutionTailRec"
-        runhaskell -e "import Euler27; putStrLn \$ \"Rec: \" ++ show solutionRec"
-        runhaskell -e "import Euler27; putStrLn \$ \"Modular: \" ++ show solutionModular"
-        runhaskell -e "import Euler27; putStrLn \$ \"Map: \" ++ show solutionMap"
-        runhaskell -e "import Euler27; putStrLn \$ \"List: \" ++ show solutionList"
-        
-    - name: Run Python tests
-      run: |
-        python3 --version
-        echo "Running Euler4.py..."
-        python3 Euler4.py
-        echo "Running Euler27.py..."
-        python3 Euler27.py
+        echo "=== Running Python tests ==="
+        python3 test_euler.py
