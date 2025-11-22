@@ -28,14 +28,14 @@ jobs:
       run: |
         cabal update
         cabal install hlint
-        ~/.cabal/bin/hlint Euler4.hs Euler27.hs test_euler.hs
+        ~/.cabal/bin/hlint src/Euler4.hs src/Euler27.hs src/test_euler.hs
         
     - name: Run Haskell tests
       run: |
         echo "=== Running Haskell tests ==="
-        runhaskell test_euler.hs
+        runhaskell src/test_euler.hs
         
     - name: Run Python tests  
       run: |
         echo "=== Running Python tests ==="
-        python3 test_euler.py
+        python3 src/test_euler.py

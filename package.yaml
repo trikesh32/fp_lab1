@@ -15,34 +15,15 @@ dependencies:
 
 library:
   source-dirs: src
+  exposed-modules:
+    - Euler4
+    - Euler27
   dependencies:
     - containers
 
-executables:
-  euler4-test:
-    main: Euler4Test.hs
-    source-dirs: test
-    dependencies:
-      - euler-problems
-      - HUnit
-      - tasty
-      - tasty-hunit
-
-  euler27-test:
-    main: Euler27Test.hs
-    source-dirs: test
-    dependencies:
-      - euler-problems
-      - HUnit
-      - tasty
-      - tasty-hunit
-
 tests:
   euler-tests:
-    main: EulerTests.hs
-    source-dirs: test
+    main: test_euler.hs
+    source-dirs: src
     dependencies:
       - euler-problems
-      - HUnit
-      - tasty
-      - tasty-hunit
