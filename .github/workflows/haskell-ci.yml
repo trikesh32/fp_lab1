@@ -24,9 +24,14 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y libgmp-dev
         
-    - name: Run HLint
+    - name: Check Fourmolu formatting
       run: |
         cabal update
+        cabal install fourmolu
+        ~/.cabal/bin/fourmolu --mode check src/Euler4.hs src/Euler27.hs src/test_euler.hs
+        
+    - name: Run HLint
+      run: |
         cabal install hlint
         ~/.cabal/bin/hlint src/Euler4.hs src/Euler27.hs src/test_euler.hs
         
