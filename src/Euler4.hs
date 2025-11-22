@@ -1,8 +1,6 @@
 module Euler4 where
 
 import Data.List (foldl')
-
-
 minNum :: Int
 minNum = 100
 maxNum :: Int
@@ -25,8 +23,6 @@ largestPalindromeTailRec = go maxNum 0
         | otherwise = findPalindrome i (j - 1) currentBest
       where
         product = i * j
-
-
 largestPalindromeRec :: Int
 largestPalindromeRec = search maxNum maxNum
   where
@@ -37,8 +33,6 @@ largestPalindromeRec = search maxNum maxNum
         | otherwise = search i (j - 1)
       where
         product = i * j
-
-
 largestPalindromeModular :: Int
 largestPalindromeModular =
     let
@@ -46,8 +40,6 @@ largestPalindromeModular =
         palindromes = filter isPalindrome allProducts
      in
         foldl' max 0 palindromes
-
-
 largestPalindromeMap :: Int
 largestPalindromeMap =
     maximum $ map processRow [minNum .. maxNum]
@@ -57,7 +49,5 @@ largestPalindromeMap =
             (0 :) $
                 map (i *) $
                     filter (\j -> isPalindrome (i * j)) [i .. maxNum]
-
-
 largestPalindromeList :: Int
 largestPalindromeList = maximum [r | i <- [minNum .. maxNum], j <- [i .. maxNum], let r = i * j, isPalindrome r]
