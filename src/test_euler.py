@@ -5,7 +5,7 @@ import sys
 
 def test_euler4():
     """Test Euler4 implementation"""
-    result = subprocess.run([sys.executable, 'Euler4.py'], capture_output=True, text=True)
+    result = subprocess.run([sys.executable, 'src/Euler4.py'], capture_output=True, text=True)
     output = result.stdout.strip()
     expected = "906609"
     
@@ -18,7 +18,7 @@ def test_euler4():
 
 def test_euler27():
     """Test Euler27 implementation"""
-    result = subprocess.run([sys.executable, 'Euler27.py'], capture_output=True, text=True)
+    result = subprocess.run([sys.executable, 'src/Euler27.py'], capture_output=True, text=True)
     output = result.stdout.strip()
     expected = "-59231"
     
