@@ -33,7 +33,7 @@ jobs:
     - name: Run Haskell tests
       run: |
         echo "=== Running Haskell tests ==="
-        runhaskell src/test_euler.hs
+        stack test
         
     - name: Run Python tests  
       run: |
