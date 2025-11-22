@@ -1,6 +1,7 @@
 module Euler4 where
 
 import Data.List (foldl')
+
 minNum :: Int
 minNum = 100
 maxNum :: Int
